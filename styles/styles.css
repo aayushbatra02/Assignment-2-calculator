@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --background-color: #191919;
+  font-weight: normal;
+}
+
+body {
+  background-color: var(--background-color);
+  color: white;
+  font-family: system-ui;
+}
+
+.stopwatch {
+  margin: auto;
+  margin-top: 5vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+
+.stopwatch .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.stopwatch .button-container button {
+  padding: 1rem 3rem;
+  background-color: var(--background-color);
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.stopwatch .lap-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.stopwatch .lap-container .lap {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 4K */
+@media (min-width: 2560px) {
+  .stopwatch {
+    font-size: 2.5rem;
+    gap: 4rem;
+  }
+
+  .stopwatch .button-container {
+    gap: 4rem;
+  }
+
+  .stopwatch .button-container button {
+    padding: 2rem 6rem;
+    font-size: 2rem;
+  }
+}
+
+/* mobile */
+@media (max-width: 760px) {
+  .stopwatch {
+    font-size: 1rem;
+    gap: 1.5rem;
+    margin-top: 10rem;
+  }
+
+  .stopwatch .button-container {
+    gap: 1rem;
+  }
+
+  .stopwatch .button-container button {
+    padding: 0.5rem 1rem;
+  }
+}
