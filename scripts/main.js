@@ -2,8 +2,7 @@ const startBtn = document.querySelector(".start");
 const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
 const lapBtn = document.querySelector(".lap");
-const timeSpan = document.querySelector(".time");
-const millisecondSpan = document.querySelector(".milliseconds");
+const displayTime = document.querySelector(".time");
 const lapContainer = document.querySelector(".lap-container");
 const lapHeadings = document.querySelectorAll(".heading");
 
@@ -18,7 +17,7 @@ const start = () => {
   timeInterval = setInterval(() => {
     elapsedTime = Date.now() - startTime;
     const time = getTime(elapsedTime);
-    displayTime(timeSpan, time);
+    displayFormattedTime(displayTime, time);
   }, 10);
   showButton("stop");
   lapStartTime = startTime;
@@ -31,7 +30,7 @@ const pause = () => {
 
 const reset = () => {
   clearInterval(timeInterval);
-  displayTime(timeSpan, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
+  displayFormattedTime(displayTime, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
   elapsedTime = 0;
   showButton("inital");
   lapCount = 0;
@@ -75,8 +74,8 @@ const createLap = () => {
   const totalLapTimeDiv = document.createElement("div");
   totalLapTimeDiv.classList.add("total-lap-time");
   lapNumberDiv.innerHTML = `Lap ${doubleDigitHandler(lapCount)}`;
-  displayTime(lapTimeDiv, lapTime);
-  displayTime(totalLapTimeDiv, totalLapTime);
+  displayFormattedTime(lapTimeDiv, lapTime);
+  displayFormattedTime(totalLapTimeDiv, totalLapTime);
   lapContainer.appendChild(lapDiv);
   lapDiv.appendChild(lapNumberDiv);
   lapDiv.appendChild(lapTimeDiv);
@@ -114,7 +113,7 @@ const getTime = (elapsedTime) => {
   return { hours, minutes, seconds, milliseconds };
 };
 
-const displayTime = (div, time) => {
+const displayFormattedTime = (div, time) => {
   const { hours, minutes, seconds, milliseconds } = time;
   div.innerHTML = `${doubleDigitHandler(hours)}:${doubleDigitHandler(
     minutes
