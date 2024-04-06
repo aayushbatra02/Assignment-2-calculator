@@ -2,23 +2,26 @@ const startBtn = document.querySelector(".start");
 const stopBtn = document.querySelector(".stop");
 const resetBtn = document.querySelector(".reset");
 const lapBtn = document.querySelector(".lap");
-const hourSpan = document.querySelector(".hours");
-const minuteSpan = document.querySelector(".minutes");
-const secondSpan = document.querySelector(".seconds");
+const timeSpan = document.querySelector(".time");
 const millisecondSpan = document.querySelector(".milliseconds");
 const lapContainer = document.querySelector(".lap-container");
+const lapHeadings = document.querySelectorAll(".heading");
 
 let startTime;
 let elapsedTime = 0;
 let timeInterval;
+let lapCount = 0;
+let lapStartTime = 0;
 
 const start = () => {
   startTime = Date.now() - elapsedTime;
-  timeInterval = setInterval(function printTime() {
+  timeInterval = setInterval(() => {
     elapsedTime = Date.now() - startTime;
-    displayTime(elapsedTime);
+    const time = getTime(elapsedTime);
+    displayTime(timeSpan, time);
   }, 10);
   showButton("stop");
+  lapStartTime = startTime;
 };
 
 const pause = () => {
@@ -28,10 +31,13 @@ const pause = () => {
 
 const reset = () => {
   clearInterval(timeInterval);
-  displayTime(0);
+  displayTime(timeSpan, { hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
   elapsedTime = 0;
   showButton("inital");
   lapCount = 0;
+  lapHeadings[0].style.display = "none";
+  lapHeadings[1].style.display = "none";
+  lapHeadings[2].style.display = "none";
   lapContainer.innerHTML = "";
   prevLapTime = {
     hours: 0,
@@ -41,26 +47,25 @@ const reset = () => {
   };
 };
 
-let lapCount = 0;
-let prevLapTime = {
-  hours: 0,
-  minutes: 0,
-  seconds: 0,
-  milliseconds: 0,
+let totalLapElpasedTime = 0;
+
+const getLapTime = () => {
+  const elapsedLapTime = Date.now() - lapStartTime;
+  const lapTime = getTime(elapsedLapTime);
+  lapStartTime = Date.now();
+  totalLapElpasedTime += elapsedLapTime;
+  const totalLapTime = getTime(totalLapElpasedTime);
+  return { lapTime, totalLapTime };
 };
+
 const createLap = () => {
   lapCount++;
-  const totalLapTime = `${hourSpan.innerHTML}:${minuteSpan.innerHTML}:${secondSpan.innerHTML}:${millisecondSpan.innerHTML}`;
-
-  const lapTime = `${doubleDigitHandler(
-    Number(hourSpan.innerHTML) - prevLapTime.hours
-  )}:${doubleDigitHandler(
-    Number(minuteSpan.innerHTML) - prevLapTime.minutes
-  )}:${doubleDigitHandler(
-    Number(secondSpan.innerHTML) - prevLapTime.seconds
-  )}:${doubleDigitHandler(
-    Number(parseInt(millisecondSpan.innerHTML) - prevLapTime.seconds)
-  )}`;
+  let { lapTime, totalLapTime } = getLapTime();
+  if (lapCount > 0) {
+    lapHeadings[0].style.display = "block";
+    lapHeadings[1].style.display = "block";
+    lapHeadings[2].style.display = "block";
+  }
   const lapDiv = document.createElement("div");
   lapDiv.classList.add("lap");
   const lapNumberDiv = document.createElement("div");
@@ -69,19 +74,13 @@ const createLap = () => {
   lapTimeDiv.classList.add("lap-time");
   const totalLapTimeDiv = document.createElement("div");
   totalLapTimeDiv.classList.add("total-lap-time");
-
   lapNumberDiv.innerHTML = `Lap ${doubleDigitHandler(lapCount)}`;
-  lapTimeDiv.innerHTML = lapTime;
-  totalLapTimeDiv.innerHTML = totalLapTime;
-
+  displayTime(lapTimeDiv, lapTime);
+  displayTime(totalLapTimeDiv, totalLapTime);
   lapContainer.appendChild(lapDiv);
   lapDiv.appendChild(lapNumberDiv);
   lapDiv.appendChild(lapTimeDiv);
   lapDiv.appendChild(totalLapTimeDiv);
-
-  prevLapTime.hours = Number(hourSpan.innerHTML);
-  prevLapTime.minutes = Number(minuteSpan.innerHTML);
-  prevLapTime.seconds = Number(secondSpan.innerHTML);
 };
 
 const showButton = (action) => {
@@ -103,9 +102,7 @@ const showButton = (action) => {
   }
 };
 
-showButton("initial");
-
-const displayTime = (elapsedTime) => {
+const getTime = (elapsedTime) => {
   let diffInHours = elapsedTime / 3600000;
   let hours = Math.floor(diffInHours);
   let diffInMinutes = (diffInHours - hours) * 60;
@@ -114,11 +111,14 @@ const displayTime = (elapsedTime) => {
   let seconds = Math.floor(diffInSec);
   let diffInMs = (diffInSec - seconds) * 100;
   let milliseconds = Math.floor(diffInMs);
+  return { hours, minutes, seconds, milliseconds };
+};
 
-  hourSpan.innerHTML = doubleDigitHandler(hours);
-  minuteSpan.innerHTML = doubleDigitHandler(minutes);
-  secondSpan.innerHTML = doubleDigitHandler(seconds);
-  millisecondSpan.innerHTML = doubleDigitHandler(milliseconds);
+const displayTime = (div, time) => {
+  const { hours, minutes, seconds, milliseconds } = time;
+  div.innerHTML = `${doubleDigitHandler(hours)}:${doubleDigitHandler(
+    minutes
+  )}:${doubleDigitHandler(seconds)}:${doubleDigitHandler(milliseconds)}`;
 };
 
 const doubleDigitHandler = (time) => {

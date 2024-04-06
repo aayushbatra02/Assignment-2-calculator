@@ -2,14 +2,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  --background-color: #191919;
+  /* --background-color: #FFA900; */
+  --background-color: black;   
   font-weight: normal;
 }
 
 body {
-  background-color: var(--background-color);
   color: white;
   font-family: system-ui;
+  background-color: var(--background-color);
+}
+
+.disable {
+  display: none;
 }
 
 .stopwatch {
@@ -41,14 +46,31 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 50%;
+  width: 70%;
+  margin: auto;
+}
+
+.stopwatch .lap-heading-container {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
   margin: auto;
   margin-top: 5rem;
 }
 
-.stopwatch .lap-container .lap {
+.stopwatch .lap-container .lap{
   display: flex;
   justify-content: space-between;
+}
+
+.stopwatch .lap-container .lap > *,
+.stopwatch .lap-heading-container > * {
+  width: 30%;
+}
+
+.stopwatch .lap-container .lap .heading {
+  font-weight: 600;
+  font-size: 1.8rem;
 }
 
 /* 4K */
