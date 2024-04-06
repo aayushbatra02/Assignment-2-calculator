@@ -4,7 +4,7 @@ const resetBtn = document.querySelector(".reset");
 const lapBtn = document.querySelector(".lap");
 const displayTime = document.querySelector(".time");
 const lapContainer = document.querySelector(".lap-container");
-const lapHeadings = document.querySelectorAll(".heading");
+const lapHeadingContainer = document.querySelector(".lap-heading-container");
 
 let startTime;
 let elapsedTime = 0;
@@ -34,16 +34,8 @@ const reset = () => {
   elapsedTime = 0;
   showButton("inital");
   lapCount = 0;
-  lapHeadings[0].style.display = "none";
-  lapHeadings[1].style.display = "none";
-  lapHeadings[2].style.display = "none";
+  lapHeadingContainer.style.display = "none";
   lapContainer.innerHTML = "";
-  prevLapTime = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    milliseconds: 0,
-  };
 };
 
 let totalLapElpasedTime = 0;
@@ -61,9 +53,7 @@ const createLap = () => {
   lapCount++;
   let { lapTime, totalLapTime } = getLapTime();
   if (lapCount > 0) {
-    lapHeadings[0].style.display = "block";
-    lapHeadings[1].style.display = "block";
-    lapHeadings[2].style.display = "block";
+    lapHeadingContainer.style.display = "flex";
   }
   const lapDiv = document.createElement("div");
   lapDiv.classList.add("lap");
@@ -73,7 +63,7 @@ const createLap = () => {
   lapTimeDiv.classList.add("lap-time");
   const totalLapTimeDiv = document.createElement("div");
   totalLapTimeDiv.classList.add("total-lap-time");
-  lapNumberDiv.innerHTML = `Lap ${doubleDigitHandler(lapCount)}`;
+  lapNumberDiv.innerHTML = `Lap ${precedingZeroHandler(lapCount)}`;
   displayFormattedTime(lapTimeDiv, lapTime);
   displayFormattedTime(totalLapTimeDiv, totalLapTime);
   lapContainer.appendChild(lapDiv);
@@ -115,12 +105,12 @@ const getTime = (elapsedTime) => {
 
 const displayFormattedTime = (div, time) => {
   const { hours, minutes, seconds, milliseconds } = time;
-  div.innerHTML = `${doubleDigitHandler(hours)}:${doubleDigitHandler(
+  div.innerHTML = `${precedingZeroHandler(hours)}:${precedingZeroHandler(
     minutes
-  )}:${doubleDigitHandler(seconds)}:${doubleDigitHandler(milliseconds)}`;
+  )}:${precedingZeroHandler(seconds)}:${precedingZeroHandler(milliseconds)}`;
 };
 
-const doubleDigitHandler = (time) => {
+const precedingZeroHandler = (time) => {
   if (time < 10) {
     return `0${time}`;
   } else {

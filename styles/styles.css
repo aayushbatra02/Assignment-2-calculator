@@ -12,7 +12,7 @@ body {
   background-color: #F7C566;
 }
 
-.disable {
+body .disable {
   display: none;
 }
 
@@ -62,7 +62,8 @@ body {
 }
 
 .stopwatch .lap-heading-container {
-  display: flex;
+  /* display: flex; */
+  display: none;
   justify-content: space-between;
   width: 100%;
   margin: auto;
@@ -118,6 +119,11 @@ body {
 
 /* mobile */
 @media (max-width: 760px) {
+
+  body{
+    background-color: var(--background-color);
+  }
+
   .stopwatch {
     font-size: 1rem;
     gap: 1.5rem;
@@ -125,6 +131,7 @@ body {
     width: 100%;
     padding: 1rem ;
     border-radius: 0rem;
+    box-shadow: none;
   }
 
   .stopwatch .button-container {
