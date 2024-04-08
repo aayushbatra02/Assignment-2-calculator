@@ -16,7 +16,7 @@ body .disable {
   display: none;
 }
 
-.stopwatch {
+#stopwatch {
   margin: auto;
   width: 70%;
   padding: 2rem;
@@ -32,13 +32,13 @@ body .disable {
   margin-bottom: 5rem;
 }
 
-.stopwatch .button-container {
+#stopwatch #button-container {
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
 
-.stopwatch .button-container button {
+#stopwatch #button-container button {
   padding: 1rem 3rem;
   background-color: var(--background-color);
   color: white;
@@ -48,12 +48,12 @@ body .disable {
   border-radius: 0.5rem;
 }
 
-.stopwatch .button-container button:hover {
+#stopwatch #button-container button:hover {
   background-color: white;
   color: var(--background-color);
 }
 
-.stopwatch #lap-container {
+#stopwatch #lap-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -61,56 +61,56 @@ body .disable {
   margin: auto;
 }
 
-.stopwatch #lap-heading-container {
+#stopwatch #lap-heading-container {
   display: none;
   justify-content: space-between;
   width: 100%;
   margin: auto;
 }
 
-.stopwatch #lap-container .lap{
+#stopwatch #lap-container .lap{
   display: flex;
   justify-content: space-between;
 }
 
-.stopwatch #lap-container .lap > *,
-.stopwatch #lap-heading-container > * {
+#stopwatch #lap-container .lap > *,
+#stopwatch #lap-heading-container > * {
   width: 30%;
 }
 
-.stopwatch #lap-container .lap .heading {
+#stopwatch #lap-container .lap .heading {
   font-weight: 600;
   font-size: 1.8rem;
 }
 
 /* 4K */
 @media (min-width: 2560px) {
-  .stopwatch {
+  #stopwatch {
     font-size: 2.5rem;
     gap: 4rem;
   }
 
-  .stopwatch .button-container {
+  #stopwatch #button-container {
     gap: 4rem;
   }
 
-  .stopwatch .button-container button {
+  #stopwatch #button-container button {
     padding: 2rem 6rem;
     font-size: 2rem;
   }
 
-  .stopwatch #lap-container {
+  #stopwatch #lap-container {
     gap: 2rem;
   }
 }
 
 
 @media (max-width: 1000px) {
-  .stopwatch {
+  #stopwatch {
     width: 90%;
   }
 
-  .stopwatch #lap-heading-container h3 {
+  #stopwatch #lap-heading-container h3 {
     font-size: 1.5rem;
   }
 }
@@ -123,7 +123,7 @@ body .disable {
     background-color: var(--background-color);
   }
 
-  .stopwatch {
+  #stopwatch {
     font-size: 1rem;
     gap: 1.5rem;
     margin-top: 10rem;
@@ -133,15 +133,15 @@ body .disable {
     box-shadow: none;
   }
 
-  .stopwatch .button-container {
+  #stopwatch #button-container {
     gap: 1rem;
   }
 
-  .stopwatch .button-container button {
+  #stopwatch #button-container button {
     padding: 0.5rem 1rem;
   }
 
-  .stopwatch #lap-heading-container h3, .stopwatch #lap-container .lap > * {
+  #stopwatch #lap-heading-container h3, #stopwatch #lap-container .lap > * {
     font-size: 0.8rem;
   }
 }
