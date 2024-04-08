@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div id="stopwatch">
+      <h1 id="title">STOPWATCH</h1>
+      <h2 id="sub-title">VANILLA JAVASCRIPT STOPWATCH</h2>
+      <div id="time">00:00:00:00</div>
+      <div id="button-container">
+        <button id="start">Start</button>
+        <button id="stop" class="disable">Stop</button>
+        <button id="reset" class="disable">Reset</button>
+        <button id="lap-button" class="disable">Lap</button>
+      </div>
+      <div id="lap-heading-container">
+        <h3 class="heading">Lap Number</h3>
+        <h3 class="heading">Lap Time</h3>
+        <h3 class="heading">Total Lap Time</h3>
+      </div>
+      <div id="lap-container"></div>
+    </div>
+
+    <script src="./scripts/main.js"></script>
+  </body>
 </html>
