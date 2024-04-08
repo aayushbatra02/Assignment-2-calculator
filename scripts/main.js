@@ -1,10 +1,10 @@
-const startBtn = document.querySelector(".start");
-const stopBtn = document.querySelector(".stop");
-const resetBtn = document.querySelector(".reset");
-const lapBtn = document.querySelector(".lap");
-const displayTime = document.querySelector(".time");
-const lapContainer = document.querySelector(".lap-container");
-const lapHeadingContainer = document.querySelector(".lap-heading-container");
+const startBtn = document.getElementById("start");
+const stopBtn = document.getElementById("stop");
+const resetBtn = document.getElementById("reset");
+const lapBtn = document.getElementById("lap-button");
+const displayTime = document.getElementById("time");
+const lapContainer = document.getElementById("lap-container");
+const lapHeadingContainer = document.getElementById("lap-heading-container");
 
 let startTime;
 let elapsedTime = 0;

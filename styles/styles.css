@@ -53,7 +53,7 @@ body .disable {
   color: var(--background-color);
 }
 
-.stopwatch .lap-container {
+.stopwatch #lap-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -61,25 +61,24 @@ body .disable {
   margin: auto;
 }
 
-.stopwatch .lap-heading-container {
-  /* display: flex; */
+.stopwatch #lap-heading-container {
   display: none;
   justify-content: space-between;
   width: 100%;
   margin: auto;
 }
 
-.stopwatch .lap-container .lap{
+.stopwatch #lap-container .lap{
   display: flex;
   justify-content: space-between;
 }
 
-.stopwatch .lap-container .lap > *,
-.stopwatch .lap-heading-container > * {
+.stopwatch #lap-container .lap > *,
+.stopwatch #lap-heading-container > * {
   width: 30%;
 }
 
-.stopwatch .lap-container .lap .heading {
+.stopwatch #lap-container .lap .heading {
   font-weight: 600;
   font-size: 1.8rem;
 }
@@ -100,7 +99,7 @@ body .disable {
     font-size: 2rem;
   }
 
-  .stopwatch .lap-container {
+  .stopwatch #lap-container {
     gap: 2rem;
   }
 }
@@ -111,7 +110,7 @@ body .disable {
     width: 90%;
   }
 
-  .stopwatch .lap-heading-container h3 {
+  .stopwatch #lap-heading-container h3 {
     font-size: 1.5rem;
   }
 }
@@ -142,7 +141,7 @@ body .disable {
     padding: 0.5rem 1rem;
   }
 
-  .stopwatch .lap-heading-container h3, .stopwatch .lap-container .lap > * {
+  .stopwatch #lap-heading-container h3, .stopwatch #lap-container .lap > * {
     font-size: 0.8rem;
   }
 }

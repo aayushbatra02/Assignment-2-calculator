@@ -10,19 +10,19 @@
     <div class="stopwatch">
       <h1 class="title">STOPWATCH</h1>
       <h2 class="sub-title">VANILLA JAVASCRIPT STOPWATCH</h2>
-      <div class="time">00:00:00:00</div>
+      <div id="time">00:00:00:00</div>
       <div class="button-container">
-        <button class="start">Start</button>
-        <button class="stop disable">Stop</button>
-        <button class="reset disable">Reset</button>
-        <button class="lap disable">Lap</button>
+        <button id="start">Start</button>
+        <button id="stop" class="disable">Stop</button>
+        <button id="reset" class="disable">Reset</button>
+        <button id="lap-button" class="disable">Lap</button>
       </div>
-      <div class="lap-heading-container">
+      <div id="lap-heading-container">
         <h3 class="heading">Lap Number</h3>
         <h3 class="heading">Lap Time</h3>
         <h3 class="heading">Total Lap Time</h3>
       </div>
-      <div class="lap-container"></div>
+      <div id="lap-container"></div>
     </div>
 
     <script src="./scripts/main.js"></script>
